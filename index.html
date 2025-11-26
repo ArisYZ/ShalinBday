@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shalin's Birthday To-Do List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Image Section (Left) -->
+        <div class="image-section">
+            <div class="image-display">
+                <img id="backgroundImage" src="" alt="Background Image" />
+                <img id="overlayGif" src="" alt="Overlay GIF" class="overlay-gif" />
+                <div class="bone-counter-overlay">
+                    <span class="bone-counter-text">🦴 <span id="boneCount">0</span></span>
+                </div>
+                <div id="boneContainer" class="bone-container">
+                    <!-- Bones will be added here dynamically -->
+                </div>
+            </div>
+        </div>
+
+        <!-- To-Do List Section (Right) -->
+        <div class="todo-section">
+            <div class="todo-header">
+                <h1>🎉 Shalin's To-Do List 🎉</h1>
+                <p class="subtitle">Happy Birthday! Keep track of your tasks here.</p>
+            </div>
+            
+            <div class="todo-input-container">
+                <div class="todo-input-row">
+                    <input 
+                        type="text" 
+                        id="todoInput" 
+                        placeholder="Add a new task..." 
+                        class="todo-input"
+                    />
+                    <button id="addBtn" class="add-btn">Add Task</button>
+                </div>
+                <div class="todo-meta-container">
+                    <input 
+                        type="date" 
+                        id="todoDate" 
+                        class="todo-date"
+                    />
+                    <select id="todoUrgency" class="todo-urgency">
+                        <option value="" disabled selected>Priority</option>
+                        <option value="low">Low</option>
+                        <option value="medium">Medium</option>
+                        <option value="high">High</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="todo-filters">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="active">Active</button>
+                <button class="filter-btn" data-filter="completed">Completed</button>
+            </div>
+
+            <ul id="todoList" class="todo-list"></ul>
+
+            <div class="todo-footer">
+                <span id="itemCount" class="item-count">0 tasks remaining</span>
+                <button id="clearCompleted" class="clear-btn">Clear Completed</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
+
