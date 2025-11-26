@@ -33,24 +33,43 @@
       "script.js",
       "config.js",
       "main.js",
+      "package.json",
       "Background/**/*",
-      "Picasso/**/*",
-      "package.json"
+      "Picasso/**/*"
     ],
+    "extraFiles": [],
     "win": {
       "target": [
-        "nsis",
-        "portable"
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
       ],
       "icon": "icon.ico"
     },
     "mac": {
-      "target": "dmg",
-      "icon": "icon.icns"
+      "target": [
+        {
+          "target": "dmg",
+          "arch": ["x64", "arm64"]
+        }
+      ],
+      "icon": "icon.icns",
+      "category": "public.app-category.productivity"
     },
-    "linux": {
-      "target": "AppImage",
-      "icon": "icon.png"
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "dmg": {
+      "title": "Shalin's Birthday To-Do",
+      "icon": "icon.icns"
     }
   }
 }

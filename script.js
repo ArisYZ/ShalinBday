@@ -70,6 +70,7 @@ class TodoApp {
         this.setupEventListeners();
         this.setupColorPicker();
         this.setupCalendar();
+        this.setupClock();
         this.render();
         this.renderBones();
         this.applyTheme(this.currentTheme);
@@ -1301,19 +1302,35 @@ class TodoApp {
         return null;
     }
     
-    parseDateInput(dateString) {
-        if (!dateString) return null;
-        // Parse MM/DD/YYYY format
-        const parts = dateString.split('/');
-        if (parts.length === 3) {
-            const month = parseInt(parts[0]) - 1;
-            const day = parseInt(parts[1]);
-            const year = parseInt(parts[2]);
-            const date = new Date(year, month, day);
-            // Return in YYYY-MM-DD format for storage
-            return `${year}-${(month + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`;
-        }
-        return null;
+    setupClock() {
+        const clockDisplay = document.getElementById('clockDisplay');
+        if (!clockDisplay) return;
+        
+        // Update clock immediately
+        this.updateClock();
+        
+        // Update clock every second
+        setInterval(() => {
+            this.updateClock();
+        }, 1000);
+    }
+    
+    updateClock() {
+        const clockDisplay = document.getElementById('clockDisplay');
+        if (!clockDisplay) return;
+        
+        const now = new Date();
+        let hours = now.getHours();
+        const minutes = now.getMinutes().toString().padStart(2, '0');
+        const seconds = now.getSeconds().toString().padStart(2, '0');
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        
+        // Convert to 12-hour format
+        hours = hours % 12;
+        hours = hours ? hours : 12; // 0 should be 12
+        hours = hours.toString().padStart(2, '0');
+        
+        clockDisplay.textContent = `${hours}:${minutes}:${seconds} ${ampm}`;
     }
 }
 
